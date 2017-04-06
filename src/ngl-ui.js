@@ -7,6 +7,7 @@ import { Header, DisplayOptions } from './components/components.js';
 import { app } from './reducers/reducers.js';
 import { setAssemblyOptions } from "./actions/actions.js";
 import { initRepr, setColor, setStyle, setSpin, setHydrogen, setWater } from "./ngl-script.js";
+import { NglController } from './ngl-controller';
 import { getQueryStringParameterByName, inspect } from "./util.js";
 
 // Kick start the initialization process
@@ -57,6 +58,14 @@ function init() {
                 ]
             };
 
+
+            const nglController = new NglController( {
+                spin: false,
+            } );
+            nglController.setStage(stage);
+            console.log(nglController.getSpin());
+            // nglController.setSpin(true);
+
             // Creates a REDUX store that holds the complete state tree of app
             // createStore(reducer, [preloadedState])
 
@@ -76,7 +85,7 @@ function init() {
 
             // Any change in STATE will trigger call to update NGL stage
             store.subscribe(() => {
-                updateStageFromReduxStore(structureComponent, store, stage);
+                updateStageFromReduxStore(structureComponent, store, nglController);
             });
 
 
@@ -103,7 +112,7 @@ function initUi (store) {
 }
 
 // Function to update the NGL STAGE whenever REDUX state changes
-function updateStageFromReduxStore(structureComponent, store, stage) {
+function updateStageFromReduxStore(structureComponent, store, nglController) {
 
     console.log('UPDATING NGL STAGE WITH REDUX STORE. USING NEW STATE');
     console.log(store.getState());
@@ -116,6 +125,11 @@ function updateStageFromReduxStore(structureComponent, store, stage) {
         setColor(store.getState().color);
         setStyle(store.getState().style);
         setSpin(store.getState().spin);
+        console.log("+++++ from NGL controller");
+        
+        // NOT WORKING
+        nglController.setSpinStage(true);
+        console.log("+++++ end from NGL controller");
         setHydrogen(store.getState().hydrogen);
         setWater(store.getState().water);
     }
