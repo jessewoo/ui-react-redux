@@ -30,6 +30,18 @@ function app(state, action) {
             return Object.assign({}, state, {
                 style: action.style
             });
+        case actions.SET_SPIN:
+            return Object.assign({}, state, {
+                spin: action.spin
+            });
+        case actions.SET_WATER:
+            return Object.assign({}, state, {
+                water: action.water
+            });
+        case actions.SET_HYDROGEN:
+            return Object.assign({}, state, {
+                hydrogen: action.hydrogen
+            });
         // Cases like: @@redux/INIT
         default:
             return state;

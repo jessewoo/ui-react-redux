@@ -6,7 +6,7 @@ import NGL from 'ngl';
 import { Header, DisplayOptions } from './components/components.js';
 import { app } from './reducers/reducers.js';
 import { setAssemblyOptions } from "./actions/actions.js";
-import { initRepr, setColor, setStyle } from "./ngl-script.js";
+import { initRepr, setColor, setStyle, setSpin, setHydrogen, setWater } from "./ngl-script.js";
 import { getQueryStringParameterByName, inspect } from "./util.js";
 
 // Kick start the initialization process
@@ -39,6 +39,9 @@ function init() {
             const initialState = {
                 pdbId: pdbId,
                 structureTitle: structureComponent.structure.title,
+                spin: false,
+                hydrogen: true,
+                water: false,
                 assembly: structureComponent.defaultAssembly,
                 color: 'rainbow',
                 colorOptions: [
@@ -73,7 +76,7 @@ function init() {
 
             // Any change in STATE will trigger call to update NGL stage
             store.subscribe(() => {
-                updateStageFromReduxStore(structureComponent, store);
+                updateStageFromReduxStore(structureComponent, store, stage);
             });
 
 
@@ -100,7 +103,7 @@ function initUi (store) {
 }
 
 // Function to update the NGL STAGE whenever REDUX state changes
-function updateStageFromReduxStore(structureComponent, store) {
+function updateStageFromReduxStore(structureComponent, store, stage) {
 
     console.log('UPDATING NGL STAGE WITH REDUX STORE. USING NEW STATE');
     console.log(store.getState());
@@ -112,6 +115,8 @@ function updateStageFromReduxStore(structureComponent, store) {
         structureComponent.setDefaultAssembly( store.getState().assembly );
         setColor(store.getState().color);
         setStyle(store.getState().style);
-
+        setSpin(store.getState().spin);
+        setHydrogen(store.getState().hydrogen);
+        setWater(store.getState().water);
     }
 }

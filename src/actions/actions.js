@@ -3,6 +3,9 @@ export const SET_ASSEMBLY = 'SET_ASSEMBLY';
 export const SET_ASSEMBLY_OPTIONS = 'SET_ASSEMBLY_OPTIONS';
 export const SET_COLOR = 'SET_COLOR';
 export const SET_STYLE = 'SET_STYLE';
+export const SET_SPIN = 'SET_SPIN';
+export const SET_WATER = 'SET_WATER';
+export const SET_HYDROGEN = 'SET_HYDROGEN';
 
 console.log("ACTIONS file passed thru");
 
@@ -36,6 +39,31 @@ export const setStyle = function (style) {
         style: style
     };
 }
+
+export const setSpin = function (spin) {
+    console.log("ACTIONS: " + spin);
+    return {
+        type: SET_SPIN,
+        spin: spin
+    };
+}
+
+export const setWater = function (water) {
+    console.log("ACTIONS: " + water);
+    return {
+        type: SET_WATER,
+        spin: water
+    };
+}
+
+export const setHydrogen = function (hydrogen) {
+    console.log("ACTIONS: " + hydrogen);
+    return {
+        type: SET_HYDROGEN,
+        spin: hydrogen
+    };
+}
+
 
 export const setAssemblyOptions = function (structure) {
     console.log("Dispatching Set Assembly Options");

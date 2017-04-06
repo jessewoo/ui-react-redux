@@ -180,15 +180,33 @@ function setColor(color) {
     }
 }
 
-// spin
+// Spin - NGL
 function setSpin(spin) {
     if (spin === true) {
-        // stage.setSpin([0, 1, 0], 0.005);
+        console.log("Spin Set True: stage.setSpin([0, 1, 0], 0.005)");
     } else if (spin === false) {
-        // stage.setSpin(null, null);
+        console.log("Spin Set False: stage.setSpin(null, null)");
     }
-    currentSpin = spin;
 }
+
+// Hydrogen
+function setHydrogen(hydrogen) {
+    if (hydrogen === true) {
+        console.log("Hydrogen Set True: getHydrogenVisibility");
+    } else if (hydrogen === false) {
+        console.log("Hydrogen Set False");
+    }
+}
+
+// Water
+function setWater(water) {
+    if (water === true) {
+        console.log("Water Set True: getWaterVisibility");
+    } else if (water === false) {
+        console.log("Water Set False");
+    }
+}
+
 
 // set styles
 function setStyle(style) {
@@ -209,4 +227,4 @@ function setStyle(style) {
     }
 }
 
-export {initRepr, setColor, setStyle}
+export {initRepr, setColor, setStyle, setSpin, setHydrogen, setWater}
